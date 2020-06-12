@@ -9,7 +9,6 @@ services:
       - jellyfin-cache:/cache
       - ./media:/media
     restart: unless-stopped
-
 volumes:
   jellyfin-config:
   jellyfin-cache:
