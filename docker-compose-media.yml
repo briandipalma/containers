@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+  jellyfin:
+    image: linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
+    volumes:
+      # This can grown large, 50gb+ for a large collection
+      - ../jellyfin-config:/config
+      - ../media/tvshows:/data/tvshows
+      - ../media/movies:/data/movies
+    ports:
+      - 8096:8096
+    restart: unless-stopped
