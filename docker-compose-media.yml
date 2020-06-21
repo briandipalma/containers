@@ -42,8 +42,8 @@ services:
       - PASS=password #optional
     volumes:
       - ../containers-data/transmission-config:/config
-      - ../downloads:/downloads
-      - ../downloads:/watch
+      - ../containers-data/transmission-downloads:/downloads
+      - ../containers-data/transmission-watch:/watch
     ports:
       - 9091:9091
       - 51413:51413
