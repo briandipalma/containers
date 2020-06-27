@@ -1,14 +1,15 @@
 version: "3"
 services:
+
   jellyfin:
     image: jellyfin/jellyfin
     user: 1000:1000
     network_mode: "host"
     volumes:
-      - jellyfin-config:/config
-      - jellyfin-cache:/cache
-      - ./media:/media
+      # This can grown large, 50gb+ for a large collection
+      - ../containers-data/jellyfin-config:/config
+      - ../containers-data/jellyfin-cache:/cache
+      - ../media/tvshows:/media/tvshows
+      - ../media/movies:/media/movies
     restart: unless-stopped
-volumes:
-  jellyfin-config:
-  jellyfin-cache:
+
