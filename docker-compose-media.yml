@@ -10,8 +10,8 @@ services:
       # This can grown large, 50gb+ for a large collection
       - ../containers-data/jellyfin-config:/config
       - ../containers-data/jellyfin-cache:/cache
-      - ../media/tvshows:/media/tvshows
-      - ../media/movies:/media/movies
+      - /media/usb/media/tvshows:/media/tvshows
+      - /media/usb/media/movies:/media/movies
     ports:
       - 8096:8096
     restart: unless-stopped
@@ -57,11 +57,26 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - ../containers-data/sonarr-config:/config
-      - ../media/tvshows:/tv
+      - /media/usb/appdata/sonarr-config:/config
+      - /media/usb/media/tvshows:/tv
       - ../containers-data/transmission-downloads/complete:/downloads
     ports:
       - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
+    volumes:
+      - /media/usb/appdata/radarr-config:/config
+      - /media/usb/media/movies:/movies
+      - ../containers-data/transmission-downloads/complete:/downloads
+    ports:
+      - 7878:7878
     restart: unless-stopped
 
   nzbget:
