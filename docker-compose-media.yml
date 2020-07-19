@@ -54,7 +54,7 @@ services:
       - TZ=Europe/Dublin
     volumes:
       - /media/usb/appdata/nzbget-config:/config
-      - ../containers-data/nzbget-downloads:/downloads
+      - /media/usb/downloads/nzbget-downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
